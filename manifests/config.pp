@@ -20,19 +20,16 @@ class nginx::config(
     content => template("${module_name}/conf.d/nginx.conf.erb"),
   }
 
-  file { 'config-dir':
-    ensure => direcory,
-    name   => '/etc/nginx',
-    before => File['nginx_conf'],
+  file { $config_log_dir:
+    ensure  => direcory,
+    recures => true
   }
 
-  file { 'config-log-dir':
-    ensure => direcory,
-    name   => '/var/log/nginx',
-  }
-
-  file { 'nginx-pid':
-    ensure => direcory,
-    name   => '/run',
+  file { $docroot:
+    ensure  => direcory,
+    recures => true,
+    owner   => $config_owner,
+    group   => $config_group,
+    mode    => $config_mode,
   }
 }
