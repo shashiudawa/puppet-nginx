@@ -22,12 +22,12 @@ class nginx::config(
 
   file { $config_log_dir:
     ensure  => direcory,
-    recures => true
+    recure  => true
   }
 
   file { $docroot:
     ensure  => direcory,
-    recures => true,
+    recure  => true,
     owner   => $config_owner,
     group   => $config_group,
     mode    => $config_mode,
